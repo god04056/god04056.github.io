@@ -47,7 +47,10 @@ jobs:
           JEKYLL_ENV: production
 
       - name: Check internal links
-        run: bundle exec htmlproofer _site --disable-external
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --ignore-urls '/^http:\/\/(127\.0\.0\.1|0\.0\.0\.0|localhost)(:[0-9]+)?(\/|$)/'
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v5
